@@ -1,0 +1,39 @@
+/RMG/Manager/Logging/LogLevel detail
+
+/RMG/Geometry/RegisterDetector Germanium V00048A 001
+/RMG/Geometry/RegisterDetector Germanium V01240A 002
+
+/run/initialize
+
+# create a scene
+/vis/open TSG_QT_ZB
+/vis/scene/create
+/vis/sceneHandler/attach
+
+# draw the geometry
+/vis/drawVolume
+
+# setup better colors
+/vis/viewer/set/defaultColour black
+/vis/viewer/set/background white
+
+# and also show trajectories and particle hits
+/vis/scene/add/trajectories smooth
+/vis/scene/add/hits
+/vis/scene/endOfEventAction accumulate
+
+
+# /RMG/Output/FileName Th228_70mm.lh5 but tbh don't need this line
+
+/RMG/Generator/Confine Volume
+/RMG/Generator/Confinement/Physical/AddVolume Source
+
+/RMG/Generator/Select GPS
+/gps/particle ion
+/gps/ion 90 228 # Thorium-228
+#/gps/ion 56 133 # Barium-133
+#/gps/ion 95 241 # Americium-241
+/gps/ang/type iso
+
+
+/run/beamOn 100

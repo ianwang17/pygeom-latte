@@ -1,0 +1,18 @@
+/RMG/Manager/Logging/LogLevel detail
+
+/RMG/Geometry/RegisterDetector Germanium V00048A 001
+/RMG/Geometry/RegisterDetector Germanium V01240A 002
+
+/run/initialize
+
+/RMG/Generator/Confine Volume
+/RMG/Generator/Confinement/Physical/AddVolume Source
+
+/RMG/Generator/Select GPS
+/gps/particle ion
+/gps/ion 90 228 # Thorium-228
+#/gps/ion 56 133 # Barium-133
+#/gps/ion 95 241 # Americium-241
+/gps/ang/type iso
+
+/run/beamOn 530000
