@@ -1,0 +1,72 @@
+calibration: {}
+detail:
+  cosmogenic:
+    HPGe_dets: metadata
+    PEN_plates: stl
+    cavern: omit
+    cryostat: simple
+    fiber_curtain: segmented
+    front-end_and_insulators: omit
+    labs: omit
+    nm_holding_structure: omit
+    nm_plastic: omit
+    watertank: omit
+    watertank_instrumentation: omit
+  radiogenic:
+    HPGe_dets: metadata
+    PEN_plates: stl
+    cavern: omit
+    cryostat: simple
+    fiber_curtain: segmented
+    front-end_and_insulators: omit
+    labs: omit
+    nm_holding_structure: omit
+    nm_plastic: omit
+    watertank: omit
+    watertank_instrumentation: omit
+fibers:
+  S0101:
+    geometry:
+      tpb:
+        thickness_in_nm: 1093 # required
+    location:
+      module_num: 0           # required
+      x: 0.0                # required
+      y: 0.0                  # required
+    name: S0101
+    type: single_string
+  S0102:
+    geometry:
+      tpb:
+        thickness_in_nm: 1093
+    location:
+      module_num: 1
+      x: 0.0
+      y: 0.0
+    name: S0102
+    type: single_string
+  S0103:
+    geometry:
+      tpb:
+        thickness_in_nm: 1093
+    location:
+      module_num: 2
+      x: 0.0
+      y: 0.0
+    name: S0103
+    type: single_string
+hpge_string:
+  '1':
+    angle_in_deg: 60
+    center:
+      x_in_mm: 0.0
+      y_in_mm: 0.0
+    radius_in_mm: 0.0
+    rod_radius_in_mm: 51
+hpges:
+  V00048A:
+    baseplate: xlarge
+    rodlength_in_mm: 140.1
+  V01240A:
+    baseplate: xlarge
+    rodlength_in_mm: 140.1
