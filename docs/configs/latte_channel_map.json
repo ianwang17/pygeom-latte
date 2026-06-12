@@ -1,0 +1,328 @@
+{
+    "V00048A": {
+        "name": "V00048A",
+        "system": "geds",
+        "location": {
+            "string": 1,
+            "position": 1
+        },
+        "daq": {
+            "rawid": 101
+        },
+        "type": "icpc",
+        "production": {
+            "manufacturer": "Mirion",
+            "order": 0,
+            "crystal": "048",
+            "slice": "A",
+            "enrichment": {
+            "val": 0.878,
+            "unc": 0.004
+            },
+            "passivation": true,
+            "reprocessing": false,
+            "mass_in_g": 1918.9,
+            "impcc": {
+            "array": {
+                "value_in_1e9e/cm3": [
+                15,
+                10
+                ],
+                "dist_from_contact_in_mm": [
+                0,
+                81
+                ]
+            },
+            "function_pars": {
+                "z0_in_1e10e/cm3": 0,
+                "gradient_in_1e10e/cm4": 0,
+                "quadratic_in_1e10e/cm5": 0
+            }
+            },
+            "delivered": "2018-03-01"
+        },
+        "geometry": {
+            "height_in_mm": 80.4,
+            "radius_in_mm": 37.3,
+            "borehole": {
+            "radius_in_mm": 5.25,
+            "depth_in_mm": 47.4
+            },
+            "groove": {
+            "depth_in_mm": 2,
+            "radius_in_mm": {
+                "outer": 13,
+                "inner": 10
+            }
+            },
+            "pp_contact": {
+            "radius_in_mm": 10,
+            "depth_in_mm": 0
+            },
+            "taper": {
+            "top": {
+                "angle_in_deg": 0,
+                "height_in_mm": 0
+            },
+            "bottom": {
+                "angle_in_deg": 0,
+                "height_in_mm": 0
+            },
+            "borehole": {
+                "angle_in_deg": 0,
+                "height_in_mm": 0
+            }
+            }
+        },
+        "characterization": {
+            "manufacturer": {
+            "depletion_voltage_in_V": 3500,
+            "recommended_voltage_in_V": 4000,
+            "fwhm_co57fep_in_keV": 0.76,
+            "fwhm_co60fep_in_keV": 1.76,
+            "dl_thickness_in_mm": null
+            },
+            "l200_site": {
+            "location": "hades",
+            "daq": "struck3301",
+            "depletion_voltage_in_V": 2900,
+            "recommended_voltage_in_V": 3400,
+            "fwhm_in_keV": {
+                "co60fep": 1.69,
+                "tl208fep": 2.42,
+                "qbb": 2.08
+            },
+            "survival_fraction": {
+                "tl208dep": 0.9,
+                "qbb": 0.34,
+                "tl208sep": 0.056,
+                "tl208fep": 0.064
+            },
+            "fccd_in_mm": {
+                "am241": {
+                "value": 0.82,
+                "uncertainty": {
+                    "uncorr": {
+                    "pos": 0.05,
+                    "neg": 0.05
+                    },
+                    "corr": {
+                    "pos": 0.05,
+                    "neg": 0.05
+                    }
+                }
+                }
+            }
+            },
+            "combined_0vbb_analysis": {
+            "fccd_in_mm": {
+                "value": 0.82,
+                "uncertainty": {
+                "pos": 0.108,
+                "neg": 0.108
+                }
+            }
+            }
+        }
+    },
+    "V01240A": {
+        "name": "V01240A",
+        "system": "geds",
+        "location": {
+            "string": 1,
+            "position": 2
+        },
+        "daq": {
+            "rawid": 102
+        },
+        "type": "icpc",
+        "production": {
+            "manufacturer": "Ortec",
+            "order": 1,
+            "crystal": "240",
+            "slice": "A",
+            "enrichment": {
+            "val": 0.88,
+            "unc": 0.005
+            },
+            "passivation": true,
+            "reprocessing": false,
+            "mass_in_g": 2100,
+            "impcc": {
+            "array": {
+                "value_in_1e9e/cm3": [
+                9.1,
+                4.47
+                ],
+                "dist_from_contact_in_mm": [
+                0,
+                85
+                ]
+            },
+            "function_pars": {
+                "z0_in_1e10e/cm3": -0.91,
+                "gradient_in_1e10e/cm4": 0.052,
+                "quadratic_in_1e10e/cm5": 0
+            }
+            },
+            "delivered": "2019-07-24"
+        },
+        "geometry": {
+            "height_in_mm": 85.6,
+            "radius_in_mm": 38.5,
+            "borehole": {
+            "radius_in_mm": 5,
+            "depth_in_mm": 52.8
+            },
+            "groove": {
+            "depth_in_mm": 2,
+            "radius_in_mm": {
+                "outer": 22,
+                "inner": 19
+            }
+            },
+            "pp_contact": {
+            "radius_in_mm": 2.85,
+            "depth_in_mm": 1.7
+            },
+            "taper": {
+            "top": {
+                "angle_in_deg": 45,
+                "height_in_mm": 2
+            },
+            "bottom": {
+                "angle_in_deg": 0,
+                "height_in_mm": 0
+            },
+            "borehole": {
+                "angle_in_deg": 10,
+                "height_in_mm": 42
+            }
+            }
+        },
+        "characterization": {
+            "manufacturer": {
+            "depletion_voltage_in_V": null,
+            "recommended_voltage_in_V": 3000,
+            "fwhm_co57fep_in_keV": 0.594,
+            "fwhm_co60fep_in_keV": 1.7,
+            "dl_thickness_in_mm": 0.7
+            },
+            "l200_site": {
+            "location": "surf",
+            "daq": "gretina",
+            "depletion_voltage_in_V": 2200,
+            "recommended_voltage_in_V": 2700,
+            "fwhm_in_keV": {
+                "co60fep": null,
+                "tl208fep": 2.33,
+                "qbb": 2.13
+            },
+            "survival_fraction": {
+                "tl208dep": 0.9,
+                "qbb": 0.39,
+                "tl208sep": 0.054,
+                "tl208fep": 0.106
+            },
+            "fccd_in_mm": {
+                "am241": {
+                "central": null,
+                "err_uncorr_pos": null,
+                "err_uncorr_neg": null,
+                "err_corr_pos": null,
+                "err_corr_neg": null
+                },
+                "ba133": {
+                "central": null,
+                "err_uncorr_pos": null,
+                "err_uncorr_neg": null,
+                "err_corr_pos": null,
+                "err_corr_neg": null
+                }
+            }
+            },
+            "combined_0vbb_analysis": {
+            "fccd_in_mm": {
+                "value": 0.7,
+                "uncertainty": {
+                "pos": 0.35,
+                "neg": 0.35
+                }
+            }
+            }
+        }
+    },
+    "S0101T": {
+        "name": "S0101T",
+        "system": "spms",
+        "location": {
+            "barrel": 1,
+            "fiber": "S0101",
+            "position": "top"
+        },
+        "daq": {
+            "rawid": 5000
+        }
+    },
+    "S0102T": {
+        "name": "S0102T",
+        "system": "spms",
+        "location": {
+            "barrel": 1,
+            "fiber": "S0102",
+            "position": "top"
+        },
+        "daq": {
+            "rawid": 5001
+        }
+    },
+    "S0103T": {
+        "name": "S0103T",
+        "system": "spms",
+        "location": {
+            "barrel": 1,
+            "fiber": "S0103",
+            "position": "top"
+        },
+        "daq": {
+            "rawid": 5002
+        }
+    },
+    "S0101B": {
+        "name": "S0101B",
+        "system": "spms",
+        "location": {
+            "barrel": 1,
+            "fiber": "S0101",
+            "position": "bottom"
+        },
+        "daq": {
+            "rawid": 5009
+        }
+    },
+    "S0102B": {
+        "name": "S0102B",
+        "system": "spms",
+        "location": {
+            "barrel": 1,
+            "fiber": "S0102",
+            "position": "bottom"
+        },
+        "daq": {
+            "rawid": 5010
+        }
+    },
+    "S0103B": {
+        "name": "S0103B",
+        "system": "spms",
+        "location": {
+            "barrel": 1,
+            "fiber": "S0103",
+            "position": "bottom"
+        },
+        "daq": {
+            "rawid": 5011
+        }
+    }
+}
+
