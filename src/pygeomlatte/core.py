@@ -19,28 +19,27 @@ from pygeomlatte.source import build_source
 
 log = logging.getLogger(__name__)
 
-def construct(
-    config: str | dict | None = None, 
-    ) -> geant4.Registry:
-    """ Construct the LATTE geometry and return the registry containing the world volume. 
+def construct(config: str | dict | None = None) -> geant4.Registry:
 
+    """ Construct the LATTE geometry and return the registry containing the world volume. 
+    
     Parameters
     -----------
     config
         Configuration dictionary (or the file containing it) defining relevant parameters of the geometry.
-        This should have the following structure:
-            .. code-block:: yaml
-            
+        This should have the following structure::
+
             input_files:
                 sm_path: /path/to/special/metadata/yaml
-                cm_path: /path/to/channel/map/json
-
+                cm_path: /path/to/channel/map/json       
+        
             source:
                 source_mat: G4_Th, G4_Ba, etc.
                 source_radius_mm: 280
 
             fiber_shroud:
                 radius_in_mm: 60
+
     """             
 
     if isinstance(config, str):
@@ -75,6 +74,9 @@ def construct(
     instr = core.InstrumentationData(world_l, None, 0, 0, materials, reg, channelmap, special_metadata, AttrsDict(config), detail)
 
     reg = build_cryo(reg, materials, world_l)
+    lar_l = reg.logicalVolumeDict["LAr_l"] # need this to place the HPGe strings and fibers.
+    lar_pv = reg.physicalVolumeDict["LAr"] # need this to place the HPGe strings and fibers.
+
     
     #We're using the L1000 geometry method to place the HPGe string, we just need to tell it that our LAr volume is the volume it should use first.
     instr = instr._replace(mother_lv=lar_l, mother_pv=lar_pv, mother_z_displacement=0)

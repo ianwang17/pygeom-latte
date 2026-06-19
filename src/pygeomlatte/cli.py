@@ -5,7 +5,8 @@ import logging
 
 from dbetto import TextDB, utils
 from pyg4ometry import config as meshconfig
-from pygeomtools import geometry, write_pygeom
+import pygeomtools.geometry
+from pygeomtools.materials import LegendMaterialRegistry
 
 from . import _version, core
 
@@ -25,8 +26,8 @@ def dump_gdml_cli(argv: list[str] | None = None) -> None:
 
     registry = core.construct(config=config)
 
-    if args.print_volumes:
-        geometry.print_volumes(registry, args.print_volumes)
+    #if args.print_volumes:
+    #    geometry.print_volumes(registry, args.print_volumes)
 
     if args.filename is not None:
         log.info("Exportng GDML geometry to %s", args.filename)
@@ -73,8 +74,8 @@ def _parse_cli_args(argv: list[str] | None = None) -> tuple[argparse.Namespace, 
     )
     parser.add_argument(
         "--visualize",
-        "-V",
         const=True,
+        nargs="?",
         help="""Open a VTK visualization of the generated geometry""",
     )
     parser.add_argument(
@@ -84,7 +85,7 @@ def _parse_cli_args(argv: list[str] | None = None) -> tuple[argparse.Namespace, 
     )
     parser.add_argument(
         "filename",
-        default=None,
+        default="output.gdml",
         nargs="?",
         help="""File name for the output GDML geometry.""",
     )

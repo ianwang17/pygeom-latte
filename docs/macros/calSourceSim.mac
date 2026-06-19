@@ -15,4 +15,4 @@
 #/gps/ion 95 241 # Americium-241
 /gps/ang/type iso
 
-/run/beamOn 530000
+/run/beamOn 53000

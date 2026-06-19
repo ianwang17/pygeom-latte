@@ -1,0 +1,10 @@
+input_files:
+    sm_path: /Users/jgruszko/LEGEND_Software/pygeom-latte/docs/configs/latte_special_metadata.yaml
+    cm_path: /Users/jgruszko/LEGEND_Software/pygeom-latte/docs/configs/latte_channel_map.json
+
+source:
+    source_mat: G4_Th
+    source_radius_mm: 280
+
+fiber_shroud:
+    radius_in_mm: 60
