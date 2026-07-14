@@ -13,7 +13,8 @@ import numpy as np
 import pygeomtools
 import logging
 
-from pygeomlatte.cryo import build_cryo
+from pygeomlatte.lab    import build_lab
+from pygeomlatte.cryo   import build_cryo
 from pygeomlatte.fibers import build_fibers
 from pygeomlatte.source import build_source
 
@@ -72,6 +73,11 @@ def construct(config: str | dict | None = None) -> geant4.Registry:
         # detail tells which parts of legend geometry to create/omit, can set this in special metadata yaml file
     detail = special_metadata["detail"]["radiogenic"] # cosmogenic or radiogenic
     instr = core.InstrumentationData(world_l, None, 0, 0, materials, reg, channelmap, special_metadata, AttrsDict(config), detail)
+
+
+    # I added this code, check to see if I need to add the extra definitions of the l and pv vols.
+    reg = build_lab(reg, materials, world_l)
+
 
     reg = build_cryo(reg, materials, world_l)
     lar_l = reg.logicalVolumeDict["LAr_l"] # need this to place the HPGe strings and fibers.

@@ -31,6 +31,7 @@ def build_fibers(
 
     outer_cladding_s = pg4.geant4.solid.Tubs("outer_cladding_s", fiber_shroud_radius+tbp_thickness, fiber_shroud_radius+tbp_thickness+1, 658, 0, 2 * np.pi, registry=reg, lunit="mm")
     outer_cladding_l = pg4.geant4.LogicalVolume(outer_cladding_s, materials.pmma_out, "outer_cladding_l", registry=reg)
+    outer_cladding_l.pygeom_color_rgba = [221, 255, 221, 0.1]
     pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], outer_cladding_l, "outer_cladding", tpb_l, registry=reg)
 
     inner_cladding_s = pg4.geant4.solid.Tubs("inner_cladding_s", fiber_shroud_radius+tbp_thickness+0.02, fiber_shroud_radius+tbp_thickness+0.02+0.96, 658, 0, 2 * np.pi, registry=reg, lunit="mm")
