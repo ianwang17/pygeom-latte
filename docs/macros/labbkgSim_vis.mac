@@ -1,0 +1,40 @@
+/RMG/Manager/Logging/LogLevel detail
+
+/RMG/Geometry/RegisterDetector Germanium V00048A 001
+/RMG/Geometry/RegisterDetector Germanium V01240A 002
+
+/run/initialize
+
+# create a scene -----------------------------------------------------------------------
+/vis/sceneHandler/create
+/vis/open TSG_QT_ZB
+/vis/scene/create
+/vis/sceneHandler/attach
+
+/vis/drawVolume
+
+/vis/viewer/set/defaultColour black
+/vis/viewer/set/background white
+
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/set e- red
+/vis/modeling/trajectories/drawByParticleID-0/set anti_nu_e blue
+
+/vis/scene/add/trajectories smooth
+/vis/scene/add/hits
+/vis/scene/endOfEventAction accumulate
+#---------------------------------------------------------------------------------------
+# RMG/Output/FileName bi214_1m_evts.lh5 
+
+/RMG/Generator/Confine Volume
+/RMG/Generator/Confinement/Physical/AddVolume lab_walls
+/RMG/Generator/Select GPS
+
+/gps/particle ion
+/gps/ion 83 214 # Bi214
+#/gps/ion 81 208 # Tl208
+#/gps/ion 19 40  # K40
+
+/gps/ang/type iso
+
+/run/beamOn 100

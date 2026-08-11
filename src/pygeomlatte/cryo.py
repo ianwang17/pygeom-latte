@@ -2,6 +2,7 @@ import pyg4ometry as pg4
 import numpy as np
 import pygeoml1000 as l1000geom
 from pygeomtools.materials import LegendMaterialRegistry
+import pygeomtools
 
 def build_cryo(
     reg: pg4.geant4.Registry,
@@ -51,6 +52,7 @@ def build_cryo(
     lar_s = pg4.geant4.solid.Tubs("LAr_s", 0, 305.6, 1500, 0, 2 * np.pi, registry=reg, lunit="mm")
     lar_l = pg4.geant4.LogicalVolume(lar_s, materials.liquidargon, "LAr_l", registry=reg)
     lar_pv = pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], lar_l, "LAr", world_l, registry=reg)
+    lar_pv.set_pygeom_active_detector(pygeomtools.RemageDetectorInfo("scintillator", 3))
 
     # Inside the cryostat should also be the copper IR shield and a 302SS funnel object.
     # Full locations of these two TBD. Need to ask Matthew/Jon

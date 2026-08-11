@@ -1,0 +1,23 @@
+/RMG/Manager/Logging/LogLevel detail
+
+/RMG/Geometry/RegisterDetector Germanium V00048A 001
+/RMG/Geometry/RegisterDetector Germanium V01240A 002
+
+/run/initialize
+
+RMG/Output/FileName bi214_1m_evts.lh5 
+
+/RMG/Generator/Confine Volume
+/RMG/Generator/Confinement/Physical/AddVolume lab_walls
+/RMG/Generator/Confinement/MaxSamplingTrials 10000
+
+/RMG/Generator/Select GPS
+
+/gps/particle ion
+/gps/ion 83 214 # Bi214
+#/gps/ion 81 208 # Tl208
+#/gps/ion 19 40  # K40
+
+/gps/ang/type iso
+
+/run/beamOn 100000000

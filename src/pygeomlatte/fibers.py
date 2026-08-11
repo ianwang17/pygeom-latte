@@ -1,6 +1,7 @@
 import pyg4ometry as pg4
 import numpy as np
 from pygeomtools.materials import LegendMaterialRegistry
+import pygeomtools
 
 def build_fibers(
     reg: pg4.geant4.Registry,
@@ -27,21 +28,30 @@ def build_fibers(
     tbp_thickness = .001093 # mm
     tpb_s = pg4.geant4.solid.Tubs("tpb_s", fiber_shroud_radius, fiber_shroud_radius+1+(2*tbp_thickness), 658, 0, 2 * np.pi, registry=reg, lunit="mm")
     tpb_l = pg4.geant4.LogicalVolume(tpb_s, materials.tpb_on_fibers, "tpb_l", registry=reg)
-    pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], tpb_l, "tpb", lar_l, registry=reg)
+    tpb_pv = pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], tpb_l, "tpb", lar_l, registry=reg)
+    tpb_pv.set_pygeom_active_detector(pygeomtools.RemageDetectorInfo("optical", 4, allow_uid_reuse= True))
 
     outer_cladding_s = pg4.geant4.solid.Tubs("outer_cladding_s", fiber_shroud_radius+tbp_thickness, fiber_shroud_radius+tbp_thickness+1, 658, 0, 2 * np.pi, registry=reg, lunit="mm")
     outer_cladding_l = pg4.geant4.LogicalVolume(outer_cladding_s, materials.pmma_out, "outer_cladding_l", registry=reg)
     outer_cladding_l.pygeom_color_rgba = [221, 255, 221, 0.1]
-    pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], outer_cladding_l, "outer_cladding", tpb_l, registry=reg)
+    oc_pv = pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], outer_cladding_l, "outer_cladding", tpb_l, registry=reg)
+    oc_pv.set_pygeom_active_detector(pygeomtools.RemageDetectorInfo("optical", 4, allow_uid_reuse= True))
 
     inner_cladding_s = pg4.geant4.solid.Tubs("inner_cladding_s", fiber_shroud_radius+tbp_thickness+0.02, fiber_shroud_radius+tbp_thickness+0.02+0.96, 658, 0, 2 * np.pi, registry=reg, lunit="mm")
     inner_cladding_l = pg4.geant4.LogicalVolume(inner_cladding_s, materials.pmma, "inner_cladding_l", registry=reg)
-    pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], inner_cladding_l, "inner_cladding", outer_cladding_l, registry=reg)
+    ic_pv = pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], inner_cladding_l, "inner_cladding", outer_cladding_l, registry=reg)
+    ic_pv.set_pygeom_active_detector(pygeomtools.RemageDetectorInfo("optical", 4, allow_uid_reuse= True))
 
     fiber_core_s = pg4.geant4.solid.Tubs("fiber_core_s", fiber_shroud_radius+tbp_thickness+0.02+0.04, fiber_shroud_radius+tbp_thickness+0.02+0.04+0.88, 658, 0, 2 * np.pi, registry=reg, lunit="mm")
     fiber_core_l = pg4.geant4.LogicalVolume(fiber_core_s, materials.ps_fibers, "fiber_core_l", registry=reg)
-    pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], fiber_core_l, "fiber_core", inner_cladding_l, registry=reg)
-        
+    fc_pv = pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], fiber_core_l, "fiber_core", inner_cladding_l, registry=reg)
+    fc_pv.set_pygeom_active_detector(pygeomtools.RemageDetectorInfo("optical", 4, allow_uid_reuse= True)) 
+
+      
     return reg
 
+
+# change this to make one small fiber
+# then in core.py create some function which iteratively calls the build individual fiber function across
+# some circumference c.
 
