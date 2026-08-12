@@ -1,0 +1,28 @@
+/RMG/Processes/OpticalPhysics true
+/RMG/Processes/OpticalPhysicsMaxOneWLSPhoton true
+
+/RMG/Geometry/RegisterDetectorsFromGDML Optical 
+
+/RMG/Geometry/GDMLDisableOverlapCheck true
+
+/run/initialize
+
+/RMG/Output/FileName optics_1.lh5
+
+
+# Confine our map to surround the internals of our cryostat only
+# /RMG/Generator/Confine Volume
+
+
+
+/RMG/Generator/Select GPS
+/gps/particle   opticalphoton 
+/gps/pos/type Point 
+/gps/pos/centre 0 0 0 mm
+/gps/ene/type   Gauss
+/gps/ene/mono   9.68 eV # 128nm (VUV) LAr Scintillation
+/gps/ene/sigma  0.22 eV # gaussian width
+/gps/ang/type   iso
+
+
+/run/beamOn 1000000

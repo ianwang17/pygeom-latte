@@ -1,0 +1,46 @@
+# Turn on Optical Physics
+/RMG/Processes/OpticalPhysics true
+/RMG/Processes/OpticalPhysicsMaxOneWLSPhoton true
+
+# Register our detectors
+#/RMG/Geometry/RegisterDetector Germanium V00048A 001
+#/RMG/Geometry/RegisterDetector Germanium V01240A 002
+#/RMG/Geometry/RegisterDetector Scintillation 003
+/RMG/Geometry/RegisterDetector Optical 004
+
+/RMG/Geometry/GDMLDisableOverlapCheck true
+
+/run/initialize
+
+/RMG/Output/NtuplePerDetector false
+/RMG/Output/Vertex/StorePrimaryParticleInformation false
+/RMG/Output/Vertex/StoreSinglePrecisionEnergy true
+/RMG/Output/Vertex/StoreSinglePrecisionPosition true
+
+# Confine our map to surround the internals of our cryostat only
+/RMG/Generator/Confine Volume
+
+/RMG/Generator/Confinement/SamplingMode IntersectPhysicalWithGeometrical
+/RMG/Generator/Confinement/ForceContainmentCheck true
+
+/RMG/Generator/Confinement/Physical/AddVolume lar_pv
+
+/RMG/Generator/Confinement/Geometrical/AddSolid Cylinder
+/RMG/Generator/Confinement/Geometrical/CenterPositionX 0 m
+/RMG/Generator/Confinement/Geometrical/CenterPositionY 0 m
+/RMG/Generator/Confinement/Geometrical/CenterPositionZ 0 m
+/RMG/Generator/Confinement/Geometrical/Cylinder/InnerRadius 0 m
+/RMG/Generator/Confinement/Geometrical/Cylinder/OuterRadius 0.305 m
+/RMG/Generator/Confinement/Geometrical/Cylinder/Height 1.5 m
+
+/RMG/Generator/Select GPS
+/gps/particle   opticalphoton 
+/gps/ene/type   Gauss
+/gps/ene/mono   9.68 eV # 128nm (VUV) LAr Scintillation
+/gps/ene/sigma  0.22 eV # gaussian width
+/gps/ang/type   iso
+
+# can choose to turn on random polarization -- raises warnings which can be ignored
+# /gps/polarization 1 1 1 
+
+/run/beamOn 10000000

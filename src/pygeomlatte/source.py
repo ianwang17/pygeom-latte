@@ -50,4 +50,30 @@ def build_source(
     pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], source_l, "Source", air_in_capsule_l, registry=reg)
     
     return reg
+
+
+    # -----------------------------------------------
+    # So the formula to replace source_radius would be:
+    # For a setup where I'll name the following variables:
+    # x0 is the nearest distance from source to z=0 (i.e. center of HPGe string) 
+    # where x0 corresponds with azimuthal rotational angle theta th=0
+    # Then the equation as a function of rotation would be:
+
+    # # So what I would imagine doing now is writing some code that looks like:
+
+    # rotator = pg4.geant4.solid.Tubs("rotator", 0, width, height, 0, 2*np.pi)
+    # connector = pg4.geant4.solid.Tubs("connector", [params])
+    # source_capsule = as defined above
+
+    # source_tube = pg4.geant4.solid.Union("rotator", "connector", "source_capsule") 
+    # # I think there's a special function for the union of n>2 solids
+    # source_tube_l = pg4.geant4.LogicalVolume([params])
+
+    # # but say we want the user input to be the distance from the z-axis.
+    # dist = whatever the user wants
+    # x0 = closest distance from source capsule to z=9
+    # angle = 2*np.arcsin(0.5*(dist+x0))
+    # source_tube_pv = ([angle, 0, 0], [loc], etc.)
+
+
  
