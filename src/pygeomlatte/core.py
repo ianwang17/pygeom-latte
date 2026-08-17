@@ -61,7 +61,7 @@ def construct(config: str | dict | None = None) -> geant4.Registry:
     reg = pg4.geant4.Registry()
     materials = l1000geom.core.materials.OpticalMaterialRegistry(reg)
     
-    world_s = pg4.geant4.solid.Orb("World_s", 2500, registry=reg, lunit="mm")
+    world_s = pg4.geant4.solid.Orb("World_s", 25, registry=reg, lunit="m")
     world_l = pg4.geant4.LogicalVolume(world_s, "G4_Galactic", "World", registry=reg)
     reg.setWorld(world_l)
     #config dictionary with channel map & special metadata
