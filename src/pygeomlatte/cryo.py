@@ -7,7 +7,7 @@ import pygeomtools
 def build_cryo(
     reg: pg4.geant4.Registry,
     materials: LegendMaterialRegistry,
-    world_l: pg4.geant4.LogicalVolume
+    air_l: pg4.geant4.LogicalVolume
     ) -> pg4.geant4.Registry:
     """ Build cryostat and place it into the registry. Right now it's just a cylinder of LAr. 
 
@@ -46,12 +46,12 @@ def build_cryo(
     crst_s = pg4.geant4.solid.Subtraction("crst_s", cryo_with_flange, flange_cutout, [[0,0,0], [0,0,z_flange/2]], reg)
     crst_l = pg4.geant4.LogicalVolume(crst_s, "G4_STAINLESS-STEEL", "crst_l", registry=reg)
     #crst_l.pygeom_color_rgba = [207, 212, 217, 0.01]
-    crst_pv = pg4.geant4.PhysicalVolume([0,0,0], [0,0,0], crst_l, "crst", world_l, registry=reg)
+    crst_pv = pg4.geant4.PhysicalVolume([0,0,0], [0,0,0], crst_l, "crst", air_l, registry=reg)
 
     # Inside the cryostat should be liquid argon.
     lar_s = pg4.geant4.solid.Tubs("LAr_s", 0, 305.6, 1500, 0, 2 * np.pi, registry=reg, lunit="mm")
     lar_l = pg4.geant4.LogicalVolume(lar_s, materials.liquidargon, "LAr_l", registry=reg)
-    lar_pv = pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], lar_l, "LAr", world_l, registry=reg)
+    lar_pv = pg4.geant4.PhysicalVolume([0, 0, 0], [0, 0, 0], lar_l, "LAr", air_l, registry=reg)
     lar_pv.set_pygeom_active_detector(pygeomtools.RemageDetectorInfo("scintillator", 3))
 
     # Inside the cryostat should also be the copper IR shield and a 302SS funnel object.
@@ -65,7 +65,7 @@ def build_cryo(
     irs_s = pg4.geant4.solid.Tubs("irs_s", ir_inner, ir_outer, ir_thick, 0, 2*np.pi, registry=reg, lunit="mm")
     irs_l = pg4.geant4.LogicalVolume(irs_s, "G4_Cu", "irs_l", registry=reg)
     irs_l.pygeom_color_rgba = [184, 115, 51, 0.05]
-    irs_pv = pg4.geant4.PhysicalVolume([0,0,0], [0,0,ir_loc], irs_l, "irs", world_l, registry=reg)
+    irs_pv = pg4.geant4.PhysicalVolume([0,0,0], [0,0,ir_loc], irs_l, "irs", lar_l, registry=reg)
     
     # Now for the funnel thingy. Use a cone with the top cut off. # Larger diam. 210m, inner 127mm
     lmin = 63.5 # lower inner radius
@@ -76,6 +76,7 @@ def build_cryo(
     guide_loc = ir_loc+0.1 + guide_height/2 # location inside cryostat
     guide_s = pg4.geant4.solid.Cons("guide_s", lmin, lmax, umin, umax, guide_height, 0, 2*np.pi, reg, lunit='mm')
     guide_l = pg4.geant4.LogicalVolume(guide_s, "G4_STAINLESS-STEEL", "guide_l", registry=reg)
-    guide_pv = pg4.geant4.PhysicalVolume([0,0,0],[0,0,guide_loc], guide_l, "guide", world_l, registry=reg)
+    guide_pv = pg4.geant4.PhysicalVolume([0,0,0],[0,0,guide_loc], guide_l, "guide", lar_l, registry=reg)
+
     return reg
 

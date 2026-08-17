@@ -3,6 +3,8 @@
 /RMG/Geometry/RegisterDetector Germanium V00048A 001
 /RMG/Geometry/RegisterDetector Germanium V01240A 002
 
+/RMG/Output/ParticleFilter/AddParticle -12 #omit anti_nu_e
+
 /run/initialize
 
 # create a scene -----------------------------------------------------------------------
@@ -29,6 +31,8 @@
 /RMG/Generator/Confine Volume
 /RMG/Generator/Confinement/Physical/AddVolume lab_walls
 /RMG/Generator/Select GPS
+
+
 
 /gps/particle ion
 /gps/ion 83 214 # Bi214
