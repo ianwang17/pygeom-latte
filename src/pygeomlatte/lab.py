@@ -5,7 +5,7 @@ from pygeomtools.materials import LegendMaterialRegistry
 def build_lab(
         reg: pg4.geant4.Registry,
         materials: LegendMaterialRegistry,
-        air_l: pg4.geant4.LogicalVolume
+        world_l: pg4.geant4.LogicalVolume
     ) -> pg4.geant4.Registry:
     """
     Build lab room (Chapman 050) and place into the World registry. It's just
@@ -23,9 +23,9 @@ def build_lab(
 
     """
     # Chapman 050 Room Dimensions (in meters)
-    bl = 12.19 # length
-    bw = 5.49 # width
-    bh = 2.44 # height
+    bl = 5#12.19 # length
+    bw = 4#5.49 # width
+    bh = 2#2.44 # height
 
     walls_s = pg4.geant4.solid.Box("walls_s", bl+1, bw+1, bh+1, reg, lunit='m')
     walls_l = pg4.geant4.LogicalVolume(walls_s, "G4_CONCRETE", "conc_l", registry=reg)
@@ -33,7 +33,9 @@ def build_lab(
     lab_walls = pg4.geant4.PhysicalVolume([0,0,0], [0,0,0], walls_l, "lab_walls", world_l, registry=reg)
 
     air_s = pg4.geant4.solid.Box("air_s", bl, bw, bh, registry = reg, lunit = "m") 
+    air_l = pg4.geant4.LogicalVolume(air_s, "G4_AIR", "air_l", reg)
     air_pv = pg4.geant4.PhysicalVolume([0,0,0], [0,0,0], air_l, "air_pv", walls_l, registry = reg)
+    
 
 
     return reg
