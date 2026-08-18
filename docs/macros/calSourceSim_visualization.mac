@@ -3,7 +3,12 @@
 /RMG/Geometry/RegisterDetector Germanium V00048A 001
 /RMG/Geometry/RegisterDetector Germanium V01240A 002
 
+/RMG/Output/ActivateOutputScheme ParticleFilter
+
 /run/initialize
+
+/RMG/Output/ParticleFilter/AddParticle -12 
+/RMG/Output/ParticleFilter/AddParticle  12 
 
 # create a scene
 /vis/open TSG_QT_ZB

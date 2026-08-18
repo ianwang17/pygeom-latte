@@ -3,13 +3,13 @@
 /RMG/Geometry/RegisterDetector Germanium V00048A 001
 /RMG/Geometry/RegisterDetector Germanium V01240A 002
 
-#/RMG/Output/ParticleFilter/AddParticle -12 #omit anti_nu_e
-
-#/RMG/Output/Track/StoreOpticalPhotons false
 /RMG/Output/ActivateOutputScheme ParticleFilter
+
 /run/initialize
 
-/RMG/Output/ParticleFilter/AddParticle -12
+/RMG/Output/ParticleFilter/AddParticle -12 
+/RMG/Output/ParticleFilter/AddParticle  12 
+
 # create a scene -----------------------------------------------------------------------
 /vis/sceneHandler/create
 /vis/open TSG_QT_ZB
@@ -24,7 +24,6 @@
 /vis/modeling/trajectories/create/drawByParticleID
 /vis/modeling/trajectories/drawByParticleID-0/set e- red
 /vis/modeling/trajectories/drawByParticleID-0/set anti_nu_e blue
-
 /vis/scene/add/trajectories smooth
 /vis/scene/add/hits
 /vis/scene/endOfEventAction accumulate

@@ -3,9 +3,14 @@
 /RMG/Geometry/RegisterDetector Germanium V00048A 001
 /RMG/Geometry/RegisterDetector Germanium V01240A 002
 
+/RMG/Output/ActivateOutputScheme ParticleFilter
+
 /run/initialize
 
-RMG/Output/FileName bi214_1m_evts.lh5 
+/RMG/Output/ParticleFilter/AddParticle -12 
+/RMG/Output/ParticleFilter/AddParticle  12 
+
+#RMG/Output/FileName bi214_1m_evts.lh5 
 
 /RMG/Generator/Confine Volume
 /RMG/Generator/Confinement/Physical/AddVolume lab_walls
